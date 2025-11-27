@@ -17,7 +17,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Ems-Backend</name>
 	<description>Backend project for EMS</description>
-		<packaging>war</packaging>
+		<packaging>jar</packaging>
 	<properties>
 		<java.version>21</java.version>
 	</properties>
