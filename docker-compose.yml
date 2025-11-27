@@ -8,6 +8,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: Nabhi@123
       MYSQL_DATABASE: employee_db
+     # MYSQL_ROOT_HOST: "%"       # IMPORTANT: Allow backend to connect
     ports:
       - "3307:3306"
     volumes:
@@ -18,11 +19,7 @@ services:
   backend:
     image: ramabhi/project-backend:latest
     container_name: springboot
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/life4changedb
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+   
     ports:
       - "32506:2506"
     depends_on:
@@ -34,7 +31,6 @@ services:
   frontend:
     image: ramabhi/project-frontend:latest
     container_name: react
-    
     ports:
       - "3000:80"
     depends_on:
