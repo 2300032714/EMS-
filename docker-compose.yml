@@ -1,10 +1,13 @@
+version: "3.9"
+
 services:
+
   mysqldb:
     image: mysql:8
     container_name: mysql-db
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: life4changedb
+      MYSQL_ROOT_PASSWORD: Nabhi@123
+      MYSQL_DATABASE: employee_db
     ports:
       - "3307:3306"
     volumes:
@@ -13,26 +16,30 @@ services:
       - springboot-mysql-net
 
   backend:
-    image: mvamsikrishnareddy/project-backend:latest
+    image: ramabhi/project-backend:latest
     container_name: springboot
-    platform: linux/amd64
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/life4changedb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
     ports:
       - "32506:2506"
     depends_on:
       - mysqldb
-    restart: on-failure
+    restart: always
     networks:
       - springboot-mysql-net
 
   frontend:
-    image: mvamsikrishnareddy/project-frontend:latest
+    image: ramabhi/project-frontend:latest
     container_name: react
-    platform: linux/amd64
+    
     ports:
       - "3000:80"
     depends_on:
       - backend
-    restart: on-failure
+    restart: always
     networks:
       - springboot-mysql-net
 

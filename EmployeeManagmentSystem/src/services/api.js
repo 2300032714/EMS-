@@ -2,7 +2,7 @@ import axios from "axios";
 
 // For now, use direct URL. Later you can switch to env:
 // const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-const API_BASE_URL = "http://localhost:5053/api";
+const API_BASE_URL = "http://localhost:32506/api";
 
 console.log("API_BASE_URL =", API_BASE_URL);
 
